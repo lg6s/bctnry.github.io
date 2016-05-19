@@ -1,0 +1,38 @@
+<html>
+  <body>
+    <h1>Quick git lookup</h1>
+    <p>I learned git for a couple of hours yesterday & I forget 1/2 of them today. To keep myself from forgetting I decided to make up this page.</p>
+    <hr />
+    <h3>Create a git project</h3>
+    <p>use <pre>git init</pre> in your project's directory.</p>
+    <h3>Cloning an existing project</h3>
+    <p>use <pre>git clone [location] [local name]</pre> to fetch a repo.</p>
+    <h3>Working & updating</h3>
+    <p>To make changes to a git repo, you need:
+      <ul>
+	<li>Do your work in your project's directory.</li>
+	<li>Use <pre>git add [filename1] [filename2]...</pre> to declare the files that you want to update.</li>
+	<li>And then use <pre>git commit -m "[commit message here]"</pre> to push a commit.</li>
+      </ul>
+    </p>
+    <h3>Inspecting changes</h3>
+    <p>You can use <pre>git status</pre> to see the changes between the git repo and your local version. Files whose name is printed in red is files whose changes haven't tracked by git. Use <pre>git add [filename]</pre> and its change will be tracked from now. Use <pre>git diff [filename]</pre> to see the changes of a tracked file.</p>
+    <h3>Viewing the history</h3>
+    <p>
+      <ul>
+	<li>Use <pre>git log</pre> to see all the commits on the git repo.</li>
+	<li>Use <pre>git show HEAD</pre> to see the most recent commit (which is named as the HEAD commit)</li>
+      </ul>
+    </p>
+    <h3>Changing the history</h3>
+    <p>When you changed a file by mistake, use <pre>git checkout HEAD [filename]</pre> to retrieve the most recent version of the file <b>on the repo</b>. If you've also put the file in the staging area by mistake, use <pre>git reset HEAD [filename]</pre> to cancel the add. Use <pre>git reset [first 7 characters of the SHA key of the commit]</pre> to reset the repo to that commit.</p>
+    <h3>Branches</h3>
+    <p>Use <pre>git branch</pre> to view the branches of the repo. The asterisk indicates which branch you're currently working on. Use <pre>git branch [branch name]</pre> to create new branches, use <pre>git checkout [branch name]</pre> to switch between branches, and use <pre>git branch -d [branch name]</pre> to delete a branch. Use <pre>git merge [branch name]</pre> to merge a branch to master. If you meet a merge conflict, just open the file that causes the conflict, solve the conflict manually, and just add & commit as usual.</p>
+    <h3>Remotes</h3>
+    <p>Roughly different versions. The origin remote is just called as "origin". Use <pre>git remote -v</pre> to list all the remotes. Use <pre>git fetch</pre> to get any possible changes of the repo. The changes will be put in a seperate branch whose name is "[remote name]/[branch name]". Your local copy of master is always named as "master"... Use <pre>git push [remote name] [branch name]</pre> to push your work to the remote.</p>
+    <hr />
+    Well that's just the content of the git turtorial from codeacademy... enough for some project. <br /> bctnry 2016.05.19
+  </body>
+</html>
+
+		     
