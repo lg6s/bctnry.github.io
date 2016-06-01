@@ -2,40 +2,23 @@
     height : 5px;
     background-color : #000000;
 }
-h1.title {
-    font-family : Helvetica, Arial, Sans-serif;
-    font-size : 72pt;
-    letter-spacing : -5px;
-    line-height : 90px;
-}
-span.inc1 {
-    line-height : 30px;
-}
-body {
-    font-family : Helvetica, Arial, Sans-serif;
-}
 #sidebar {
-    width : 20%;
+    width : 300px;
     float : left;
 }
-div.largenum {
-    font-size : 108pt;
-    
+#sidebar .flushright {
+    text-align : right;
 }
-#main {
-    float : left;
-    font-size : 18px;
+.title {
+    background-color : #000000;
+    color : #ffffff;
+    font-family : Helvetica, Arial, Sans-serif;
+    text-align : right;
 }
-#main h1 {
-    letter-spacing : -2px;
-}
-#main a {
+h1,a,li,p,div {
+    font-family : Helvetica, Arial, Sans-serif;
     color : #000000;
 }
-#main li {
-    font-size : 18pt;
-    letter-spacing : -1px;
-}
-#main ul {
+ul {
     list-style : none;
 }
