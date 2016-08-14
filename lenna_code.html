@@ -1,0 +1,69 @@
+<html>
+<head>
+       <title></title>
+       <meta name="description" content="">
+       <style>
+           a:link {text-decoration: none}
+           a:visited {text-decoration: none}
+           a:hover {text-decoration: none; color:#ff0000}
+       </style>
+</head>
+<body leftmargin=110  rightmargin=110 topmargin=20 bgcolor=#FFFFFF text=#000000 link=blue vlink=blue alink=blue>
+<!-- * -->
+<!-- START AUTOMATIC ASM TO HTML EXPORT -->
+<pre><font face="DejaVu Sans Mono">
+#lang racket 
+(require racket<font color=#0064C8>/</font>draw) 
+ 
+(define (pixelAt x y) 
+  (lambda (b) 
+    (let (<font color=#0064C8>[</font>pixel (make<font color=#0064C8>-</font>shared<font color=#0064C8>-</font>bytes 4 0)<font color=#0064C8>]</font>) 
+      (begin (send b get<font color=#0064C8>-</font>argb<font color=#0064C8>-</font>pixels x y 1 1 pixel) pixel)))) 
+(define (rmsPixel x) 
+  (let (<font color=#0064C8>[</font>res (exact<font color=#0064C8>-</font>round (sqrt (<font color=#0064C8>/</font> (<font color=#0064C8>+</font> (expt (bytes<font color=#0064C8>-</font>ref x 1) 2) 
+                                      (expt (bytes<font color=#0064C8>-</font>ref x 2) 2) 
+                                      (expt (bytes<font color=#0064C8>-</font>ref x 3) 2)) 3)))<font color=#0064C8>]</font>) 
+    (bytes (bytes<font color=#0064C8>-</font>ref x 0) res res res))) 
+(define (2Val cM threshold) 
+  (lambda (x) 
+    (let (<font color=#0064C8>[</font>res (if (<font color=#0064C8>&gt;</font>= (bytes<font color=#0064C8>-</font>ref (rmsPixel x) 1) threshold) 255 0)<font color=#0064C8>]</font>) 
+      (bytes (bytes<font color=#0064C8>-</font>ref x 0) res res res)))) 
+(define (Ch2Val cM threshold) 
+  <font color=#008000>; RGB level 2Val </font>
+  (lambda (x) 
+    (let (<font color=#0064C8>[</font>d (lambda (t) (if (<font color=#0064C8>&gt;</font>= t threshold) 255 0))<font color=#0064C8>]</font> 
+          <font color=#0064C8>[</font>pres (cM x)<font color=#0064C8>]</font>) 
+      (bytes (bytes<font color=#0064C8>-</font>ref x 0) 
+             (d (bytes<font color=#0064C8>-</font>ref x 1)) 
+             (d (bytes<font color=#0064C8>-</font>ref x 2)) 
+             (d (bytes<font color=#0064C8>-</font>ref x 3)))))) 
+(define (bitwiseM f) 
+  (lambda (b) 
+    (let (<font color=#0064C8>[</font>bWidth (send b get<font color=#0064C8>-</font>width)<font color=#0064C8>]</font> 
+          <font color=#0064C8>[</font>bHeight (send b get<font color=#0064C8>-</font>height)<font color=#0064C8>]</font> 
+          <font color=#0064C8>[</font>res b<font color=#0064C8>]</font>) 
+      (begin 
+        (for (<font color=#0064C8>[</font>x (range 0 bWidth)<font color=#0064C8>]</font>) 
+          (for (<font color=#0064C8>[</font>y (range 0 bHeight)<font color=#0064C8>]</font>) 
+            (let<font color=#0064C8>*</font> (<font color=#0064C8>[</font>pixel ((pixelAt x y) res)<font color=#0064C8>]</font> 
+                   <font color=#0064C8>[</font>resP (f pixel)<font color=#0064C8>]</font>) 
+              (send res set<font color=#0064C8>-</font>argb<font color=#0064C8>-</font>pixels x y 1 1 resP)))) 
+        res)))) 
+(define (2ValRMS threshold) 
+  (bitwiseM (2Val rmsPixel threshold))) 
+ 
+<font color=#008000>; left:  ((2ValRMSMonochrome 127) (bitmapFrom "F:\\Lenna.png")) </font>
+<font color=#008000>; right: ((bitwiseM (Ch2Val rmsPixel 127)) (bitmapFrom "F:\\Lenna.png")) </font>
+</font></pre>
+<!-- emu8086 version 4.07    -->
+<!-- STOP AUTOMATIC ASM TO HTML EXPORT -->
+
+
+
+
+ 
+ 
+<!-- *** -->
+<div style="font-size:10pt"><a href="index.html">Back</a></div>
+</body>
+</html>
