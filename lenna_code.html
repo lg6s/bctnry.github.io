@@ -52,8 +52,9 @@
 (define (2ValRMS threshold) 
   (bitwiseM (2Val rmsPixel threshold))) 
  
-<font color=#008000>; left:  ((2ValRMSMonochrome 127) (bitmapFrom "F:\\Lenna.png")) </font>
-<font color=#008000>; right: ((bitwiseM (Ch2Val rmsPixel 127)) (bitmapFrom "F:\\Lenna.png")) </font>
+<font color=#008000>; (-> (is-a?/c bitmap%) (is-a?/c bitmap%)) </font>
+<font color=#008000>; left:  (2ValRMSMonochrome 127) </font>
+<font color=#008000>; right: (bitwiseM (Ch2Val rmsPixel 127)) </font>
 </font></pre>
 <!-- emu8086 version 4.07    -->
 <!-- STOP AUTOMATIC ASM TO HTML EXPORT -->
