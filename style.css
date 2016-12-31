@@ -1,24 +1,15 @@
+body {
+    background-color:#ffffff;
+    color:#000000;
+    font-family: "Helvetica","Trebuchet MS",sans-serif;
+}
+a {
+    color: #000000;
+}
+code {
+    font-family: "DejaVu Sans Mono", "Consolas", "Courier New", sans-serif;
+}
 .hline {
-    height : 5px;
-    background-color : #000000;
-}
-#sidebar {
-    width : 300px;
-    float : left;
-}
-#sidebar .flushright {
-    text-align : right;
-}
-.title {
-    background-color : #000000;
-    color : #ffffff;
-    font-family : Helvetica, Arial, Sans-serif;
-    text-align : right;
-}
-h1,a,li,p,div {
-    font-family : Helvetica, Arial, Sans-serif;
-    color : #000000;
-}
-ul {
-    list-style : none;
+    height: 1px;
+    background-color: #000000;
 }
