@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Sebastian Lin&#39;s blog</title>
-  <meta name="description" content="">
+  <title>An engine for visual novels, pt 0.</title>
+  <meta name="description" content="What is visual novel?">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://bctnry.github.io/">
+  <link rel="canonical" href="http://bctnry.github.io/programming/games/2017/03/04/an-engine-for-visual-novels.html">
   <link rel="alternate" type="application/rss+xml" title="Sebastian Lin&#39;s blog" href="/feed.xml">
   
   
@@ -56,28 +56,43 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">An engine for visual novels, pt 0.</h1>
+    <p class="post-meta"><time datetime="2017-03-04T00:00:00+08:00" itemprop="datePublished">Mar 4, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="what-is-visual-novel">What is visual novel?</h2>
+
+<blockquote>
+  <p>A visual novel (ビジュアルノベル bijuaru noberu) is an interactive game, featuring mostly static graphics, most often using anime-style art or occasionally live-action stills (and sometimes video footage). As the name might suggest, they resemble mixed-media novels. Sound novels and kinetic novels are types of visual novels, although visual novels have its own distinction between the others.</p>
+
+  <p>– from <a href="https://en.wikipedia.org/wiki/Visual_novel">Wikipedia</a></p>
+</blockquote>
+
+<h2 id="why-another-engine">Why another engine?</h2>
+
+<p>Just for the sake of it.</p>
+
+<h2 id="in-what-language-will-it-use">In what language will it use?</h2>
+
+<p><a href="http://racket-lang.org/">Racket</a>, mostly because it’s by far the only language that I feel comfortable to work with. There’s a python one which is pretty popular so racket should also be able to do the trick, maybe the language itself is not designed for doing these things, though.</p>
+
+<h2 id="will-it-use-opengl">Will it use OpenGL?</h2>
+
+<p>Maybe not. I am aiming for being cross-platform so I won’t make bindings of DirectX, but I’m not going to use OpenGL either because I just can’t get hold of it; I will stick to the <code class="highlighter-rouge">racket/gui</code> package at least in the beginning.</p>
+
+<h2 id="for-what-is-the-pt-0-in-the-title">For what is the “pt 0” in the title?</h2>
+
+<p>This page serves as an index for other parts of this project. There will be more parts in the future, which I’ll leave a link here.</p>
+
+
+  </div>
+
   
-  
-
-
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Mar 4, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/programming/games/2017/03/04/an-engine-for-visual-novels.html">An engine for visual novels, pt 0.</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
-</div>
+</article>
 
       </div>
     </main>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator><link href="http://bctnry.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://bctnry.github.io/" rel="alternate" type="text/html" /><updated>2017-03-04T23:53:54+08:00</updated><id>http://bctnry.github.io/</id><title type="html">Sebastian Lin’s blog</title><subtitle></subtitle><entry><title type="html">An engine for visual novels, pt 0.</title><link href="http://bctnry.github.io/programming/games/2017/03/04/an-engine-for-visual-novels.html" rel="alternate" type="text/html" title="An engine for visual novels, pt 0." /><published>2017-03-04T00:00:00+08:00</published><updated>2017-03-04T00:00:00+08:00</updated><id>http://bctnry.github.io/programming/games/2017/03/04/an-engine-for-visual-novels</id><content type="html" xml:base="http://bctnry.github.io/programming/games/2017/03/04/an-engine-for-visual-novels.html">&lt;h2 id=&quot;what-is-visual-novel&quot;&gt;What is visual novel?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A visual novel (ビジュアルノベル bijuaru noberu) is an interactive game, featuring mostly static graphics, most often using anime-style art or occasionally live-action stills (and sometimes video footage). As the name might suggest, they resemble mixed-media novels. Sound novels and kinetic novels are types of visual novels, although visual novels have its own distinction between the others.&lt;/p&gt;
+
+  &lt;p&gt;– from &lt;a href=&quot;https://en.wikipedia.org/wiki/Visual_novel&quot;&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;why-another-engine&quot;&gt;Why another engine?&lt;/h2&gt;
+
+&lt;p&gt;Just for the sake of it.&lt;/p&gt;
+
+&lt;h2 id=&quot;in-what-language-will-it-use&quot;&gt;In what language will it use?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://racket-lang.org/&quot;&gt;Racket&lt;/a&gt;, mostly because it’s by far the only language that I feel comfortable to work with. There’s a python one which is pretty popular so racket should also be able to do the trick, maybe the language itself is not designed for doing these things, though.&lt;/p&gt;
+
+&lt;h2 id=&quot;will-it-use-opengl&quot;&gt;Will it use OpenGL?&lt;/h2&gt;
+
+&lt;p&gt;Maybe not. I am aiming for being cross-platform so I won’t make bindings of DirectX, but I’m not going to use OpenGL either because I just can’t get hold of it; I will stick to the &lt;code class=&quot;highlighter-rouge&quot;&gt;racket/gui&lt;/code&gt; package at least in the beginning.&lt;/p&gt;
+
+&lt;h2 id=&quot;for-what-is-the-pt-0-in-the-title&quot;&gt;For what is the “pt 0” in the title?&lt;/h2&gt;
+
+&lt;p&gt;This page serves as an index for other parts of this project. There will be more parts in the future, which I’ll leave a link here.&lt;/p&gt;</content><author><name></name></author><summary type="html">What is visual novel?</summary></entry></feed>
