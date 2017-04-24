@@ -38,3 +38,6 @@ a {
 body {
     margin-bottom: 100px;
 }
+.rss {
+    text-align: right;
+}
