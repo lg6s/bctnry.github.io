@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<rss version="2.0">
+    <channel>
+        <title>BCT on github</title>
+        <link>http://bctnry.github.io</link>
+        <description>butterflies that no one knows</description>
+        <copyright>All works are licensed under CC BY-NC-SA 4.0 unless further explained.</copyright>
+        <item>
+            <title>An engine for visual novels, pt 0.</title>
+            <link>http://bctnry.github.io/blog/20170304-visual-novel-engine-0.html</link>
+            <pubDate>2017-03-04</pubDate>
+            <description>
+                <h3>What is visual novel?</h3><blockquote> A visual novel is an interactive game, featuring mostly static graphics, most often using anime-style art or occasionally live-action stills (and sometimes video footage)....
+            </description>
+        </item>
+    </channel>
+</rss>
