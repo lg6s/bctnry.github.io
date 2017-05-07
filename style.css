@@ -1,6 +1,9 @@
 body {
     font-family: Times, TimesNR, 'New Century Schoolbook',
                  Georgia, 'New York', serif;
+    /* candidates: #1E4646, #006867 */
+    background-color: #006867; 
+    color: #FFFFFF;
 }
 header > h1 {
     font-family: Times, TimesNR, 'New Century Schoolbook',
@@ -14,7 +17,7 @@ header > h1 {
 }
 .hline {
     height: 1px;
-    background-color: #000000;
+    background-color: #FFFFFF;
 }
 .contact {
     padding-top: 20px;
@@ -26,7 +29,16 @@ header > h1 {
     width: 35%;
 }
 a {
-    color: #000000;
+    transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
+    -moz-transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
+    -webkit-transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
+    -o-transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
+    background-color: #006867;
+    color: #FFFFFF;
+}
+a:hover{
+    background-color: #FFFFFF;
+    color: #006867;
 }
 .back {
     text-align: right;
