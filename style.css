@@ -6,8 +6,8 @@ body {
     background-color: #006867; 
     color: #FFFFFF;
     */
-    background-color: #000000;
-    color: #006867;
+    background-color: #ffffff;
+    color: #000000;
 }
 header > h1 {
     font-family: Times, TimesNR, 'New Century Schoolbook',
@@ -22,7 +22,7 @@ header > h1 {
 .hline {
     height: 1px;
     /* background-color: #FFFFFF; */
-    background-color: #006867;
+    background-color: #000000;
 }
 .contact {
     padding-top: 20px;
@@ -43,14 +43,14 @@ a {
     color: #FFFFFF;
     
     background-color: #000000;*/
-    color: #006867;
+    color: #000000;
 }
 a:hover{
     /*
     background-color: #FFFFFF;
     color: #006867;
     */
-    background-color: #0006867;
+    background-color: #000000;
     color: #ffffff;
 }
 .back {
