@@ -1,39 +1,61 @@
 <html>
-  <head>
-  <meta charset="utf-8" />
-  <title>BCT on github</title>
-  <link rel="stylesheet" type"text/css" href="style.css" />
-  </head>
-  <body>
-  <div class="sidebar">
-    <header>
-      <h1>
-      未为人知<br />
-      之蝶
-      </h1>
-    </header>
-      <div class="hline"> </div>
-      <div class="contact">
-      Contact me:
-      <ul class="contact-ul">
-        <li>E-Mail: <a href="mailto:bctnry@outlook.com">bctnry@outlook.com</a></li>
-        <li>Twitter: <a href="http://twitter.com/BContenary">@BContenary</a></li>
-        <li>Mastodon: <a href="http://mastodon.social/@bctnry">bctnry@mastodon.social</a></li>
-      </ul>
-      </div>
-      <div class="rss"><a href="./feed.rss">RSS</a></div>
-  </div>
-  <div class="main">
-  <div class="back">
-  <a href="./about.html">About</a> | <a href="./projects.html">Projects</a> | <a href="./cp.html">CP</a>
-  </div>
-  <ul class="blogpost">
-    <li class="blogpostSingl"><a href="./blog/20170924-after-icpc-online.html">2017-09-24: ICPC网络赛结束之后</a></li>
-    <li class="blogpostSingl"><a href="./blog/20170824-after-the-multi-university-training-contests.html">2017-08-24: 多校结束之后</a></li>
-    <li class="blogpostSingl"><a href="./blog/20170514-bct-mercury-mode-first-version-released.html">2017-05-14: BCT Mercury Mode v0.0.1 released.</a></li>
-    <li class="blogpostSingl"><a href="./blog/20170304-visual-novel-engine-0.html">2017-03-04: An engine for visual novels, pt 0.</a></li>
-  </ul>
-  </div>
-  <div class="footer"></div>
-  </body>
+    <head>
+        <title>Sebastian Lin on github</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="script.js" defer="true"></script>
+    </head>
+    <body>
+        <!-- blogpost main.  -->
+        <div id="blogpostList" class="blogpostList">
+        <!-- navbar.  -->
+            <div id="navbar" class="blogpostSingl">
+                <!-- actually i don't know why but the color of <a> is overrided on chrome. -->
+                <span class="navlink"><a href="#top">Home/Top</a></span>
+                <span class="navlink"><a href="#about">About</a></span>
+                <span class="navlink"><a href="#contact">Contact</a></span>
+                <span class="navlink"><a href="https://github.com/bctnry">Github</a></span>
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                    <h1>新的开始/结束</h1>
+                </div>
+                <div class="blogpostContent">
+                    对，我再次改变了这个页面的设计。现在会根据窗口的宽度改变布局了，可以试着拖拽一下看看。<br />
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="About">
+                    <h1>About</h1>
+                </div class="blogpostName">
+                <div class="blogpostContent">
+                    <p><h3>Sebastian Lin (bctnry)</h3></p>
+                    <p>习惯用<a href="http://racket-lang.org">Racket</a>和PHP写点小东西。<br />
+                    </p>
+                    <p>现就读于广东外语外贸大学计算机科学与技术系。</p>
+                    <p>曾经写小说。现在仍然时不时地写一点。</p>
+                    <p>曾经作曲。现在已经不写了。</p>
+                </div>
+            </div>
+            <div class="blogpostSingl" id="contact">
+                <div class="About">
+                    <h1>Contact</h1>
+                </div class="blogpostName">
+                <div class="blogpostContent">
+                    <ul class="contact-ul">
+                        <li>E-Mail: <a href="mailto:bctnry@outlook.com">bctnry@outlook.com</a></li>
+                        <li>Twitter: <a href="http://twitter.com/BContenary">@BContenary</a></li>
+                        <li>Mastodon: <a href="http://mastodon.social/@bctnry">bctnry@mastodon.social</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--  blogname -->
+        <div id="blogname" class="blogname">
+            <h1>未为人知<br />之蝶</h1>
+            <div class="hline"> </div>
+            <div id="metalist">
+                Butterflies that No One Knows
+            </div>
+        </div>
+    </body>
 </html>
