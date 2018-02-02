@@ -92,7 +92,7 @@ long long GCD(long long a, long long b){
                     ax + by = GCD(a,b)
                     $$
                 </div>
-                <h5>实现</h5>
+                <h5>实现<sup><a href="#ref-1">[1]</a></sup></h5>
                 <pre>
     1   int extgcd(int a, int b, int* x, int* y){
     2       if(b == 0){
@@ -121,10 +121,10 @@ long long GCD(long long a, long long b){
                 其中\(x_{1}\)和\(y_{1}\)为计算extgcd(b,a%b)时得到的x和y。<br />
                 那么有：
                     \begin{align}
-                    bx_{1} + （a\%b)y_{1} &amp; = bx_{1} + (a - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
-                    &amp; bx_{1} + ay_{i} - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
-                    &amp; ay_{1} + bx_{1} - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
-                    &amp; ay_{1} + b(x_{1} - \lfloor \frac{a}{b} \rfloor y_{1})
+                    bx_{1} + (a\%b)y_{1} &amp; = bx_{1} + (a - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
+                    &amp; = bx_{1} + ay_{i} - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
+                    &amp; = ay_{1} + bx_{1} - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
+                    &amp; = ay_{1} + b(x_{1} - \lfloor \frac{a}{b} \rfloor y_{1})
                     \end{align}
                 由此可知：
                     \begin{align}
@@ -139,9 +139,9 @@ long long GCD(long long a, long long b){
                 </div>
                 <div class="blogpostContent">
                     \begin{align}
-                    a^{n} &amp; = a \cdot (a^{2})^{\left\lfloor \frac{n}{2} \right\rfloor} &amp; (n = 2x+1) 
+                    a^{n} &amp; = a \cdot (a^{2})^{x} &amp; (n = 2x+1) 
                     \\
-                          &amp; = (a^{2})^{\left\lfloor \frac{n}{2} \right\rfloor} &amp; (n = 2x)
+                          &amp; = (a^{2})^{x} &amp; (n = 2x)
                     \end{align}
                     可以通过上列等式将计算幂的时间复杂度降为\(O(log\:n)\)。
                     <h5>实现</h5>
@@ -164,7 +164,7 @@ ll modpow(ll a,ll n,ll m){
             </div>
             <div class="blogpostSingl" id="about">
                 <div class="blogpostName">
-                    <h1>模算数（Modular arithmetic）</h1>
+                    <h1>Modular arithmetic<sup><a href="ref-2">[2]</a></sup></h1>
                 </div>
                 <div class="blogpostContent">
                     存在以下性质：
@@ -180,11 +180,11 @@ ll modpow(ll a,ll n,ll m){
             </div>
             <div class="blogpostSingl" id="about">
                 <div class="blogpostName">
-                    <h1>模下的乘法逆元</h1>
+                    <h1>模算数的乘法逆元</h1>
                 </div>
                 <div class="blogpostContent">
                     我们称：$$ax \equiv 1 (mod \: m) \quad (GCD(a,m) = 1)$$中的\(x\)为\(a\)的模\(m\)的乘法逆元。
-                    <h3>计算方法</h3>
+                    <h3>计算方法<sup><a href="ref-3">[3]</a></sup><sup><a href="ref-4">[4]</a></sup></h3>
                     <p><b>扩展欧几里得算法</b>。对于整数a和模m：
                     $$
                     ax + my = GCD(a,m) = 1
@@ -197,6 +197,10 @@ ll modpow(ll a,ll n,ll m){
                     </p>
                     <p><b>费马小定理</b>。费马小定理指的是：
                     $$
+                    a^{p} \equiv a \quad (mod \: p)\quad(p\: is \:prime)
+                    $$
+                    即：
+                    $$
                     a^{p-1} \equiv 1 \quad (mod \: p)\quad(p\: is \:prime)
                     $$
                     即：
@@ -205,11 +209,11 @@ ll modpow(ll a,ll n,ll m){
                     $$
                     易知\(a^{p-2}\)即为a的乘法逆元。
                     </p>
-                    <p><b>欧拉函数</b>。这一做法其实是费马小定理的一般化：
+                    <p><b>欧拉函数</b>。费马小定理的一般化：
                     $$
-                    a^{\phi(n)-1} \equiv 1 \;(mod\: n)\;(GCD(a,n) = 1)
+                    a^{\phi(n)} \equiv 1 \;(mod\: n)\;(GCD(a,n) = 1)
                     $$
-                    a的乘法逆元即为\(a^{\phi(n)-2}\)。
+                    a的乘法逆元即为\(a^{\phi(n)-1}\)。易知当n为质数时\(\phi(n) = n-1\)。
                 </div>
             </div>
             <div class="blogpostSingl" id="about">
@@ -219,7 +223,7 @@ ll modpow(ll a,ll n,ll m){
                 <div class="blogpostContent">
                     所谓质数（又称素数）即是约数只有1以及它本身的数。
                     <h3>质数判断</h3>
-                    <p><b>暴力枚举</b>。存在\(O(\sqrt{n})\)的方法：任意合数（并非质数的数）n，一定有小于等于\(\sqrt(n)\)的约数。假设n = ab：
+                    <p><b>暴力枚举</b>。存在\(O(\sqrt{n})\)的方法：任意合数（并非质数的数）n，一定有小于等于\(\sqrt{n}\)的约数。假设n = ab：
                     <ul>
                     <li>如果a = b，那么n = a * a，a即为这样的约数。
                     <li>如果a &lt; b，那么一定会有\(a \lt \sqrt{n} \lt b\)，a即为这样的约数。
@@ -269,6 +273,13 @@ bool isprime(int a){
                     \phi(n) = \sum_{i = 1}^{n}[GCD(n,i) = 1]
                     $$
                     ，其中当A为真时[A] = 1，否则[A] = 0。
+                    <h3>计算<sup><a href="ref-5">[5]</a></sup></h3>
+                    <ul>
+                    <li>存在下列的公式：
+                    $$
+                    \phi(x) = n\prod_{p \mid n}\left(1 - \frac{1}{p}\right)
+                    $$
+                    其中\(p\mid n\)指「p整除n」（即「p为n的约数/因子」），p本身为质数。
                 </div>
             </div>
             <div class="blogpostSingl" id="about">
@@ -288,9 +299,10 @@ bool isprime(int a){
                     x &amp; \equiv a_{k} \quad (mod\: n_{k})
                     \end{align}
                     </li>
+                    <li>定义\(N = n_{1} \times n_{2} \times \cdots \times n_{k}\)，有\(0 \le x \lt N\)。</li>
                     </ul>
                     则\(x\)存在且唯一。
-                    <h3>解决方法</h3>
+                    <h3>解决方法<sup><a href="ref-6">[6]</a></sup></h3>
                     作出如下定义：
                     <ul>
                     <li>\(N = n_{1}n_{2}\cdots n_{i}\)
@@ -299,7 +311,7 @@ bool isprime(int a){
                     </ul>
                     答案为：
                     $$
-                    x = \sum_{i=1}^{k}(a_{i}M_{i}N_{i})
+                    x = (\sum_{i=1}^{k}(a_{i}M_{i}N_{i})) \% N
                     $$
                     易知对于任意的\(n_{i}\)，x可分为两个部分：是\(n_{i}\)的倍数的部分（通过\(N_{j}, j \neq i\)），以及不是的部分。这一「不是的部分」（根据定义）就是\(a_{i}M_{i}N_{i}\)；而从这一式子能够得到：
                     \begin{align}
@@ -315,11 +327,27 @@ bool isprime(int a){
                 </div>
                 <div class="blogpostContent">
                     <ul>
+                    <li>（质数/Möbius函数/欧拉函数）的线性筛(!)</li>
                     <li>Möbius反演</li>
                     <li>Burnside引理、Pólya定理</li>
                     <li>生成函数（亦称母函数）</li>
                     <li>……</li>
                     </ul>
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>参考资料</h1>
+                </div>
+                <div class="blogpostContent">
+                    <ol>
+                    <li><a name="ref-1">[1]</a> <a href="https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95">扩展欧几里得算法</a>. 维基百科.
+                    <li><a name="ref-2">[2]</a> Modular arithmetic. Wikipedia. <a href="https://en.wikipedia.org/wiki/Modular_arithmetic#Properties">https://en.wikipedia.org/wiki/Modular_arithmetic#Properties</a>
+                    <li><a name="ref-3">[3]</a> Modular multipicative inverse. Wikipedia. <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse#Computation">https://en.wikipedia.org/wiki/Modular_multiplicative_inverse<br />#Computation</a>
+                    <li><a name="ref-4">[4]</a> Modular multiplicative inverse. GeeksforGeeks. <a href="https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/">https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/</a>
+                    <li><a name="ref-5">[5]</a> Euler's totient function. Wikipedia. <a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function#Euler's_product_formula">https://en.wikipedia.org/wiki/Euler%27s_totient_function<br />#Euler's_product_formula</a>
+                    <li><a name="ref-6">[6]</a> Chinese remainder theorem. Wikipedia. <a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem#Existence_(direct_construction)">https://en.wikipedia.org/wiki/Chinese_remainder_theorem<br />#Existence_(direct_construction)</a>
+                    </ol>
                 </div>
             </div>
         </div>
