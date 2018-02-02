@@ -116,12 +116,12 @@ long long GCD(long long a, long long b){
                 假设有：
                 \begin{align}
                 ax + by &amp; = GCD(a,b) \\
-                bx_{1} + (a%b)y_{1} &amp; = GCD(a,b)
+                bx_{1} + (a\%b)y_{1} &amp; = GCD(a,b)
                 \end{align}
                 其中\(x_{1}\)和\(y_{1}\)为计算extgcd(b,a%b)时得到的x和y。<br />
                 那么有：
                     \begin{align}
-                    bx_{1} + （a%b)y_{1} &amp; = bx_{1} + (a - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
+                    bx_{1} + （a\%b)y_{1} &amp; = bx_{1} + (a - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
                     &amp; bx_{1} + ay_{i} - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
                     &amp; ay_{1} + bx_{1} - \lfloor \frac{a}{b} \rfloor b)y_{1} \\
                     &amp; ay_{1} + b(x_{1} - \lfloor \frac{a}{b} \rfloor y_{1})
