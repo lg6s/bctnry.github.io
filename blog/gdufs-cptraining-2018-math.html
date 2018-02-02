@@ -1,0 +1,324 @@
+<html>
+    <head>
+        <!-- title here.  -->
+        <title>GDUFS ACM集训2018 基础数学 :: Sebastian Lin on github</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="script.js" defer="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML"></script>
+    </head>
+    <body>
+        <!-- blogpost main.  -->
+        <div id="blogpostList" class="blogpostList">
+        <!-- navbar.  -->
+            <div id="navbar" class="blogpostSingl">
+                <!-- actually i don't know why but the color of <a> is overrided on chrome. -->
+                <span class="navlink"><a href="#top">Home/Top</a></span>
+                <span class="navlink"><a href="../index.html">Back</a></span>
+                <br />
+                <!-- optional title here.  -->
+                GDUFS ACM 2018年寒假集训 基础数学
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                    <!-- blog title here.  -->
+                    <h1>GDUFS<br />ACM 2018年寒假集训<br />基础数学</h1>
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                <h1>最大公约数、最小公倍数</h1>
+                </div>
+                <div class="blogpostContent">
+                    <h3>最大公约数</h3>
+                    <ul>
+                        <li>对于任意整数n，能整除它的数被称为n的<b>约数</b>。<br />
+                        如：<ul>
+                            <li>6的约数为1 2 3 6，因为6可以被1 2 3 6整除。</li>
+                            <li>13的约数为1 13，因为13只可以被1和13整除。</li>
+                            </ul>
+                        </li>
+                        <li>对于任意整数n和m，能同时整除n和m的数被称为<b>公约数</b>；其中最大的被称为<b>最大公约数（Greatest Common Divisor）</b>。<br />
+                        如：<ul>
+                            <li>18和27的公约数有1和3，其中最大的为3，即18和27的最大公约数为3。</li>
+                            <li>13和27的公约数只有1，其中最大的为1，即13和27的最大公约数为1。这样的「最大公约数为1」的情况也被称作<b>互质（coprime）</b>。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3>计算方法</h3>
+                    <p><b>暴力枚举</b>。 易知对于任意整数n m，GCD的范围为[1,min(n,m)]，其中min(A,B)指代A和B中较小的数字。易知时间复杂度为\(O(n)\)。</p>
+                    <p><b>欧几里得算法（Euclidean Algorithm）</b>。
+                    \begin{align}
+                    GCD(x,0) &amp; = x \\
+                    GCD(x,y) &amp; = GCD(y, x \% y) \\
+                             &amp; where\quad x \% y = x - (\lfloor \frac{x}{y} \rfloor \times y)
+                    \end{align}
+                    时间复杂度为\(O(log\: min(n,m))\)。
+                    <h5>递归实现</h5>
+                    <pre>
+long long GCD(long long a, long long b){ return b==0? a : GCD(b,a%b); }
+                    </pre>
+                    <h5>while循环</h5>
+                    <pre>
+long long GCD(long long a, long long b){
+    while(b != 0){
+        long long temp = a;
+        a = b;
+        b = temp % b;
+    }
+    return a;
+}
+                    </pre>
+                    </p>
+                    <h3>最小公倍数（Least Common Multiple）</h3>
+                    <ul>
+                    <li>对于任意整数n，n的倍数指\(\forall i \in \mathbb{N}^{+}.in\)，即n、2n、3n……</li>
+                    <li>对于任意整数n和m，同时为n和m的倍数的数称为公倍数，而其中最小的则被称为<b>最小公倍数</b>。</li>
+                    </ul>
+                    <h3>计算方法</h3>
+                    <p>一般<b>通过GCD得出</b>。
+                    $$
+                    LCM(a,b) = \frac{\lvert a \cdot b \rvert}{GCD(a,b)}
+                    $$
+                    </p>
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>扩展欧几里得算法</h1>
+                </div>
+                <div class="blogpostContent">
+                    给出任意整数a b，求出下列等式中的x y 及GCD(a,b)：
+                    $$
+                    ax + by = GCD(a,b)
+                    $$
+                </div>
+                <h5>实现</h5>
+                <pre>
+    1   int extgcd(int a, int b, int* x, int* y){
+    2       if(b == 0){
+    3           *x = 1, *y = 0;
+    4           return a;
+    5       } else {
+    6           int r = extgcd(b, a%b, x, y);
+    7           int t = *x;
+    8           *x = *y;
+    9           *y = t - a/b * (*y);
+   10           return r;
+   11       }
+   12   }
+                </pre>
+                <h3>算法解析</h3>
+                <ul>
+                <li>时间复杂度依然是\(O(log\:min(n,m))\)。</li>
+                <li>易知若将上列程序中的第3 7 8 9行删去，我们将得到一个递归计算GCD的算法。</li>
+                <li>对于第3行，易知当b = 0时，有\(ax + by = ax = a\)，可得x = 1。此时需要y = 0来得到绝对值最小的x和y。（如计算乘法逆元时）</li>
+                <li>对于6～9四行：<br />
+                易知有：
+                \begin{align}
+                ax + by &amp; = GCD(a,b) \\
+                bx_{1} + (b%a)y_{1} &amp; = GCD(a,b)
+                \end{align}
+                其中\(x_{1}\)和\(y_{1}\)为计算extgcd(b,b%a)时得到的x和y。
+                
+                </yl>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>快速幂</h1>
+                </div>
+                <div class="blogpostContent">
+                    \begin{align}
+                    a^{n} &amp; = a \cdot (a^{2})^{\left\lfloor \frac{n}{2} \right\rfloor} &amp; (n = 2x+1) 
+                    \\
+                          &amp; = (a^{2})^{\left\lfloor \frac{n}{2} \right\rfloor} &amp; (n = 2x)
+                    \end{align}
+                    可以通过上列等式将计算幂的时间复杂度降为\(O(log\:n)\)。
+                    <h5>实现</h5>
+                    <pre>
+// a ~ b   : a^n = (a^2)^(n/2)
+typedef long long ll;
+ll modpow(ll a,ll n,ll m){
+    if(n == 0)return 1;
+    if(n == 1)return a%m;
+    ll res = 1;
+    while(n>0){
+        if(n&amp;1)res = (res*a)%m;
+        a = (a*a)%m;
+        n>>=1;
+    }
+    return res;
+}
+</pre>
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>模算数（Modular arithmetic）</h1>
+                </div>
+                <div class="blogpostContent">
+                    存在以下性质：
+                    <ul>
+                    <li>\(\forall abm.\: (a+b)(mod\:m) \equiv (a\:mod\:m) + (b\:mod\:m)\)</li>
+                    <li>\(\forall abm.\: (a-b)(mod\:m) \equiv (a\:mod\:m) - (b\:mod\:m)\)</li>
+                    <li>\(\forall abm.\: (a\cdot b)(mod\:m) \equiv (a\:mod\:m) \cdot (b\:mod\:m)\)</li>
+                    </ul>
+                    但是却不存在这样的性质：
+                    <ul><li>\(\forall abm.\: \frac{a}{b}(mod\:m) \equiv \frac{a\:mod\:m}{b\:mod\:m}\)</li></ul>
+                    若需要在模下进行除法运算，则需要使用<b>乘法逆元</b>，以「乘以n的逆元」来代替「除以n」。
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>模下的乘法逆元</h1>
+                </div>
+                <div class="blogpostContent">
+                    我们称：$$ax \equiv 1 (mod \: m) \quad (GCD(a,m) = 1)$$中的\(x\)为\(a\)的模\(m\)的乘法逆元。
+                    <h3>计算方法</h3>
+                    <p><b>扩展欧几里得算法</b>。对于整数a和模m：
+                    $$
+                    ax + my = GCD(a,m) = 1
+                    $$
+                    应用扩展欧几里得算法计算上式中的x，即得a的乘法逆元：对上式两端同时取模，可得：
+                    $$
+                    ax \equiv 1
+                    $$
+                    正好为乘法逆元的定义。（\(my\)被mod m除去）<br />
+                    </p>
+                    <p><b>费马小定理</b>。费马小定理指的是：
+                    $$
+                    a^{p-1} \equiv 1 \quad (mod \: p)\quad(p\: is \:prime)
+                    $$
+                    即：
+                    $$
+                    a\cdot a^{p-2} \equiv 1 \quad (mod \: p)
+                    $$
+                    易知\(a^{p-2}\)即为a的乘法逆元。
+                    </p>
+                    <p><b>欧拉函数</b>。这一做法其实是费马小定理的一般化：
+                    $$
+                    a^{\phi(n)-1} \equiv 1 \;(mod\: n)\;(GCD(a,n) = 1)
+                    $$
+                    a的乘法逆元即为\(a^{\phi(n)-2}\)。
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>质数</h1>
+                </div>
+                <div class="blogpostContent">
+                    所谓质数（又称素数）即是约数只有1以及它本身的数。
+                    <h3>质数判断</h3>
+                    <p><b>暴力枚举</b>。存在\(O(\sqrt{n})\)的方法：任意合数（并非质数的数）n，一定有小于等于\(\sqrt(n)\)的约数。假设n = ab：
+                    <ul>
+                    <li>如果a = b，那么n = a * a，a即为这样的约数。
+                    <li>如果a &lt; b，那么一定会有\(a \lt \sqrt{n} \lt b\)，a即为这样的约数。
+                    <li>同理，如果a &gt; b，则b为这样的约数。
+                    </ul>
+                    <h5>实现</h5>
+                    <pre>
+bool isprime(int a){
+    if(a==1)return false;
+    else if(a==2)return true;
+    else{
+        for(int i=2;i*i&lt;=a;i++){
+            if(a%i==0)return false;
+        }return true;
+    }
+}
+</pre>
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>Möbius函数</h1>
+                </div>
+                <div class="blogpostContent">
+                    Möbius函数\(\mu(x)\)的值定义如下：
+                    <ul>
+                    <li>\(\mu(1) = 1\)
+                    <li>如果存在整数a b，有x = a*a*b，那么\(\mu(x) = 0\)。
+                    <li>对于其余情况，\(\mu(x) = (-1)^{k}\)，其中k为质因子（即本身为质数的约数）的个数。
+                    </ul>
+                    例如：
+                    <ul>
+                    <li>\(\mu(24) = 0\)，因为有24 = 2 * 2 * 6。
+                    <li>\(\mu(7) = -1\)。易知对于任意质数p有\(\mu(p) = -1\)。
+                    <li>\(\mu(6) = 1\)，因为30的因子有1 2 3 6，其中为质数的有2 3，因此\(\mu(6) = (-1)^{2} = 1\)。
+                    </ul>
+                    Möbius函数本身由于其特殊的性质被用于简化某些函数的计算。（Möbius反演）
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>欧拉函数（Euler's totient function）</h1>
+                </div>
+                <div class="blogpostContent">
+                    对于任意整数n，欧拉函数\(\phi(n)\)的值为「1到n的所有数中与n互质的数的个数」。即：
+                    $$
+                    \phi(n) = \sum_{i = 1}^{n}[GCD(n,i) = 1]
+                    $$
+                    ，其中当A为真时[A] = 1，否则[A] = 0。
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>中国剩余定理</h1>
+                </div>
+                <div class="blogpostContent">
+                    假设有：
+                    <ul>
+                    <li>互不相同且两两互质的整数\(n_{1}, n_{2}, \cdots , n_{k}\)</li>
+                    <li>整数\(a_{1}, a_{2}, \cdots , a_{k}\)</li>
+                    <li>模下的等价关系：<br />
+                    \begin{align}
+                    x &amp; \equiv a_{1} \quad (mod\: n_{1}) \\
+                    x &amp; \equiv a_{2} \quad (mod\: n_{2}) \\
+                    &amp; \cdots \\
+                    x &amp; \equiv a_{k} \quad (mod\: n_{k})
+                    \end{align}
+                    </li>
+                    </ul>
+                    则\(x\)存在且唯一。
+                    <h3>解决方法</h3>
+                    作出如下定义：
+                    <ul>
+                    <li>\(N = n_{1}n_{2}\cdots n_{i}\)
+                    <li>\(N_{i} = \frac{N}{n_{i}}\)
+                    <li>\(M_{i}\)为\(N_{i}\)模\(n_{i}\)时的乘法逆元。这是一定存在的，因为\(N_{i}\)与\(n_{i}\)互质，即有\(M_{i}N_{i}+m_{i}n_{i} = 1\)。
+                    </ul>
+                    答案为：
+                    $$
+                    x = \sum_{i=1}^{k}(a_{?}M_{i}N_{i})
+                    $$
+                    易知对于任意的\(n_{i}\)，x可分为两个部分：是\(n_{i}\)的倍数的部分（通过\(N_{j}, j \neq i\)），以及不是的部分。这一「不是的部分」（根据定义）就是\(a_{i}M_{i}N_{i}\)；而从这一式子能够得到：
+                    \begin{align}
+                    a_{i}M_{i}N_{i} &amp; = a_{i}(1 - m_{i}n_{i}) \\
+                    &amp; = a_{i} - a_{i}m_{i}n_{i} \\
+                    &amp; \equiv a_{i} \; (mod \: n_{i})
+                    \end{align}
+                </div>
+            </div>
+            <div class="blogpostSingl" id="about">
+                <div class="blogpostName">
+                    <h1>在这之后的还有……</h1>
+                </div>
+                <div class="blogpostContent">
+                    <ul>
+                    <li>Möbius反演</li>
+                    <li>Burnside引理、Pólya定理</li>
+                    <li>生成函数（亦称母函数）</li>
+                    <li>……</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--  blogname -->
+        <div id="blogname" class="blogname">
+            <h1>未为人知<br />之蝶</h1>
+            <div class="hline"> </div>
+            <div id="metalist">
+                Butterflies that No One Knows
+            </div>
+        </div>
+    </body>
+</html>
