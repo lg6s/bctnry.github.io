@@ -1,0 +1,233 @@
+<html>
+    <head>
+        <!-- title here.  -->
+        <title>PFDS Note 2 :: Sebastian Lin on github</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="script.js" defer="true"></script>
+    </head>
+    <body>
+        <!-- blogpost main.  -->
+        <div id="blogpostList" class="blogpostList">
+        <!-- navbar.  -->
+            <div id="navbar" class="blogpostSingl">
+                <!-- actually i don't know why but the color of <a> is overrided on chrome. -->
+                <span class="navlink"><a href="#top">Home/Top</a></span>
+                <span class="navlink"><a href="../index.html">Back</a></span>
+                <br />
+                <!-- optional title here.  -->
+                PFDS Note 2
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                    <!-- blog title here.  -->
+                    <h1>PFDS Note 2</h1>
+                </div>
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostContent">
+                <ul>
+                <li>PFDS指Purely Functional Data Structure。
+                <li>算是给N年前没能坚持看完Chris Okasaki的论文的自己一个交代。
+                <li>这个是书的PFDS的笔记，不是论文的笔记。
+                <li>会包括书里没有的东西。
+                </ul>
+                </div>
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                    <!-- blog title here.  -->
+                    <h1>惰性求值（lazy evaluation）</h1>
+                </div>
+                <div class="blogpostContent">
+                Informally, lazy evaluation指的是：
+                <ul>
+                <li>对表达式的求值延迟到<b>需要求值结果</b>的时候。这个叫lazy。
+                <li>一旦求值完成，结果就会保留下来；下一次需要这一结果时便会直接返回保留了的结果，不会再次进行求值。这个叫memoization。
+                </ul>
+                <p>Haskell是默认惰性求值的。Standard ML不是，F#不是，Racket也不是：他们是在每一次function application时就对参数求值，得到结果后再作为参数。这个对应的概念不叫勤快求值，叫strict evaluation。<br />
+                这个：
+                <pre>
+        (some-actions (+ 1 2) (* 3 4))
+                </pre>
+                实际上（至少在racket里）会变成：
+                <pre>
+        (some-actions 3 12)
+                </pre>
+                然后再来做some-actions。
+                <p>
+                推迟求值似乎很简单，包一层lambda就好了：
+                <pre>
+        (define (delay x) (λ () x))
+                </pre>
+                但是这是不够的：刚刚已经说过了，strict的语言里会先evaluate参数，于是你试图这样：
+                <pre>
+        (delay (+ 3 4))
+                </pre>
+                实际上会变成这样：
+                <pre>
+        (delay 7)
+                </pre>
+                然后才是：
+                <pre>
+        (λ () 7)
+                </pre>
+                那要怎么办呢？我们需要<b>直接将(delay (+ 3 7))变成(λ () (+ 3 7))</b>。对于这种问题，lisp系里有宏：
+                <pre>
+        #| tested under racket 6.11.  |#
+        (define-syntax delay
+          (syntax-rules ()
+            [(delay x) (λ () x)]))
+                </pre>
+                force就没那么多顾虑了：
+                <pre>
+        (define (force x) (x))
+                </pre>
+                但是在这个宏里我们没有做memoization，force一次求值就会进行一次。那么要怎么办呢？放进临时变量就好了：
+                <pre>
+        (define-syntax $
+          (syntax-rules ()
+            [($ x)
+             (λ ()
+               (let ((evaluated? #f)
+                     (evaluated-res (void)))
+                 (if evaluated? evaluated-res
+                     (begin
+                       (set! evaluated? #t)
+                       (set! evaluated-res x)
+                       evaluated-res))))]))
+                </pre>
+                <sub><del>（师匠：有mutation的话是个人都会做lazy了）</del></sub><br />
+                看上去假如我们有：
+                <pre>
+        ($ evaluated?)
+                </pre>
+                我们似乎会得到#t，因为展开之后是这样的：
+                <pre>
+        (λ ()
+          (let ((evaluated? #f)
+                (evaluated-res (void)))
+            (if evaluated? evaluated-res
+                (begin
+                  (set! evaluated? #t)
+                  (set! evaluated-res evaluated?)
+                  evaluated-res))))
+                </pre>
+                实际上（至少在racket里）是不会的，它只会返回当前环境里的evaluated?的值，或者在没有绑定值的时候报错。racket应该做了一点用来避免不小心访问到这种binding的工作，具体情况我不懂racket所以不熟。（正色）
+                <p>
+                那么lazy能用来做什么呢？至少、目前为止我所知道的大致上有两种：
+                <ul>
+                <li>用来规避耗时的计算。
+                <li>用来实现只是用strict做不到/很难做到的计算。
+                </ul>
+                对于第一点，举个例子吧：insertion sort时间复杂度O(n<sup>2</sup>)，但是<br />take k (insertion_sort n)理论上可以有（实际上也应该可以有）O(n*k)，因为k以后的我们已经不要了。这个是书中的Exercise 4.2，我没做出来。（毫无畏惧）<br />
+                对于第二点，haskell有个很出名的one-liner：
+                <pre>
+        fib = 0 : 1 : zipWith (+) fib (tail fib)
+                </pre>
+                这个是fibonacci数列。主要原理是这样：
+                <pre>
+        fib               | 0   1   1   2   3   5   8 ...
+        tail fib        0 | 1   1   2   3   5   8     ...
+        result      0   1 | 1   2   3   5   8   13    ...
+                </pre>
+                当你需要fib的第3项的时候，zipWith就会把fib和tail fib展开一部分，然后取出（正好是）fib的第1项和第2项，然后加起来，如此类推。那么假如展开到需要用到fib的第3项时（比如说求第5项）要怎么办呢？不怎么办，因为在此之前第3项（一定）已经计算过了，直接用就是了。
+                </div>
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                    <!-- blog title here.  -->
+                    <h1>Stream</h1>
+                </div>
+                <div class="blogpostContent">
+                Stream，又称lazy list。不是delay过的list，是每一个cons都delay过的list。<br />
+                也就是说，stream不是：
+                <pre>
+        (delay (list 1 2 3 4 5))
+                </pre>
+                而是：
+                <pre>
+        (delay (cons 1 (delay (cons 2 (delay (cons 3
+               (delay (cons 4 (delay (cons 5 (delay (list))))))))))))
+                </pre>
+                这样才会是<b>“一点一点地”</b>展开：
+                <pre>
+        (force (delay (cons 1 (delay (cons 2 (delay (cons 3 (delay (list)))))))))
+        ;; ==&gt; '(1 . #&lt;promise&gt;)
+                </pre>
+                （racket自带的delay的结果是一个叫做promise的东西；是什么现在可以不用管）<br />
+                而不是「啪！」地一下子全部展开：
+                <pre>
+        (force (delay (list 1 2 3 4 5)))
+        ;; ==&gt; '(1 2 3 4 5)
+                </pre>
+                那么，要append两个lazy list的话要怎么办呢？如果不lazy的话，我们可以这么做：
+                <pre>
+        (define (append x y)
+            (if (null? x)
+                y
+                (cons (car x) (append (cdr x) y))))
+                </pre>
+                假如涉及到lazy，那么就要连这个if也要delay掉，因为可能连append操作本身都不会执行：
+                <pre>
+        (let ((appended-list (append '(1 2 3) '(4 5))))
+          (displayln "hello world!"))
+                </pre>
+                按照lazy的语义，这个'(1 2 3)和'(4 5)永远都不会被append，因为它们append的结果根本就不会被用到。<br />
+                那么stream的append就成了这样：
+                <pre>
+        (define (lazyAppend a b)
+          (delay
+            (let ((forced (force a)))
+              (if (null? forced)
+                  (force b)
+                  (cons (car forced) (lazyAppend (cdr forced) b))))))
+                </pre>
+                具体原因是这样：
+                <ul>
+                <li>就像之前说过的那样，整个append的操作需要delay，所以我们要在最外面套一个delay。
+                <li>我们expect参数a和b都是一个stream，也expect lazyAppend返回一个stream，于是当a是(delay '())我们需要直接返回b时我们需要返回force b，因为最外面还有一层delay；不是的时候直接返回cons即可，此时由于最外层的delay我们将会得到一个delay过的cons。<br />
+                </ul>
+                take也类似：
+                <pre>
+        (define (lazyTake n s)
+          (delay
+            (if (= n 0)
+                '()
+                (let ((forced (force s)))
+                  (if (null? forced)
+                      '()
+                      (cons (car forced) (lazyTake (- n 1) (cdr forced))))))))
+                </pre>
+                但是drop则有些不同：drop的时候我们不cons东西，我们只要将stream的前n个元素去掉，保留本来就已经被封装成stream的剩下的部分就好了；而且我们肯定不会「一点一点地」drop：如果我们需要用到一个drop过的stream，我们肯定会认为前面的元素早已经被drop了。但是我们仍然需要把drop这个操作<b>本身</b>delay掉，因为drop本身也有可能是不进行的：
+                <pre>
+        (define (lazyDrop n s)
+          (define (lazyDrop_ n s)
+            (if (= n 0) s
+                (let ((forced (force s)))
+                  (if (null? forced) '()
+                      (lazyDrop_ (- n 1) (cdr forced))))))
+          (delay (lazyDrop_ n s)))
+                </pre>
+                reverse稍微有些不一样：我们需要cons东西了。
+                <pre>
+        (define (lazyReverse l)
+          (define (reverse_ l r)
+            (let ((forced (force l)))
+              (if (null? forced) r
+                  (reverse_ (cdr l) (delay (cons (car forced) r))))))
+          (reverse_ l (delay '())))
+                </pre>
+                在这里我们只是build了一个stream；reverse_本身是一次到位的，因为在需要时会需要一个一次到位的结果。
+                </div>
+            </div>
+        </div>
+        <!--  blogname -->
+        <div id="blogname" class="blogname">
+            <h1>未为人知<br />之蝶</h1>
+            <div class="hline"> </div>
+            <div id="metalist">
+                Butterflies that No One Knows
+            </div>
+        </div>
+    </body>
+</html>
