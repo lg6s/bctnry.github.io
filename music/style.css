@@ -9,6 +9,18 @@ body {
     margin: auto;
 }
 
+a {
+    color: #000000;
+}
+a:visited {
+    color: #000000;
+}
+a:active {
+    color: #000000;
+}
+a:hover {
+    color: #000000;
+}
 
 #navbar {
     background-color: #000000;
