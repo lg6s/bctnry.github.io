@@ -57,12 +57,3 @@ a:hover {
     font-size: 90%;
     font-weight: bold;
 }
-.blogpost-header-links {
-    color: #ff0000;
-    position: float;
-    float: right;
-    font-weight: bold;
-}
-.blogpost-header-links > a {
-    color: #ff0000;
-}
