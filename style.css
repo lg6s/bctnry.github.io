@@ -1,123 +1,30 @@
-html, body {
-    background-color: #000000;
+body {
     color: #ffffff;
-    font-family: Source Han Serif, SimSun, "宋体", serif;
+    background-color: #00190c;
+    font-family: "Times New Roman", serif;
+    font-size: 115%;
+    text-align: center;
+}
+#main {
+    padding-top: 30px;
+}
+#footer {
+    font-size: 80%;
+}
+.header {
+    font-size: 500%;
 }
 a {
-    transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
-    -moz-transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
-    -webkit-transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
-    -o-transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
-    /*
-    background-color: #006867; 
-    color: #FFFFFF;
-    
-    background-color: #000000;*/
-    color: #000000;
-}
-a:hover{
-    /*
-    background-color: #FFFFFF;
-    color: #006867;
-    */
-    background-color: #000000;
     color: #ffffff;
 }
-
-.hline {
-    background-color: #ffffff;
-    height: 1px;
+code {
+    font-family: "DejaVu Sans Mono", "Consolas", sans-serif;
+    font-size: 85%;
 }
-
-[class^="blogname"]{
-    background-color: #000000;
-    color: #ffffff;
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;
-    top: 0;
+pre {
+    font-family: "DejaVu Sans Mono", "Consolas", sans-serif;
+    font-size: 85%;
 }
-[class="blogname mobile"] {
-    width: 100%;
-}
-[class="blogname desktop"] {
-    font-size: 300%;
-    width: 500px;
-    float: right;
-}
-[class="blogname midwidth"] {
-    width: 300px;
-    float: right;
-    font-size: 150%;
-    padding: 10px;
-}
-
-
-[class^="blogpostList"] {
-    background-color: #000000;
-    margin: 10px;
-}
-[class="blogpostList midwidth"] {
-    width: 80%;
-}
-[class="blogpostList desktop"] {
-    width: 60%;
-}
-[class="blogpostList mobile"] {
-    width: 100%;
-}
-
-
-[class^="blogpostSingl"] {
-    background-color: #ffffff;
-    color: #000000;
-    font-family: serif;
-}
-[class^="blogpostSingl"] > a{
-    color: #000000;
-}
-[class="blogpostSingl desktop"] {
-    margin: 50px;
-    padding: 50px;
-    color: #000000;
-}
-[class="blogpostSingl midwidth"] {
-    margin: 25px;
-    padding: 25px;
-
-    color: #000000;
-}
-[class="blogpostSingl mobile"] {
-    margin: 10px;
-    padding: 10px;
-
-}
-
-.blogpostName {
-    font-family: Source Han Serif, SimSun, "宋体", serif;
-}
-
-.blogpostContent{
-}
-
-[class="blogname desktop"] > [id="metalist"] {
-    font-size: 33%;
-}
-[class="blogname midwidth"] > [id="metalist"] {
-    font-size: 66%;
-}
-
-[id="navbar"] {
-    padding: 10px;
-    color: #000000;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 10px;
-    border: 5px #000000;
-    background-color: #ffffff;
-}
-
-.navlink {
-    color: #000000;
-    width: 200px;
+.example-code {
+    border: 1px solid white;
 }
