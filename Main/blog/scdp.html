@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>再一次、试着理解状态压缩DP。 :: Sebastian Lin on github</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="script.js" defer="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML"></script>
+    </head>
+    <body>
+        <!-- blogpost main.  -->
+        <div id="blogpostList" class="blogpostList">
+        <!-- navbar.  -->
+            <div id="navbar" class="blogpostSingl">
+                <!-- actually i don't know why but the color of <a> is overrided on chrome. -->
+                <span class="navlink"><a href="#top">Home/Top</a></span>
+                <span class="navlink"><a href="../index.html">Back</a></span>
+                <br />
+                (Trying to) Understand <b>State-Embodying Dynamic Programming</b> Again. ver 2018.2.28
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                    <h1>再一次、<br />试着理解状态压缩动态规划。</h1>
+                </div>
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                <h1>注意</h1>
+                </div>
+                <div class="blogpostContent">
+                <ul>
+                <li>至少在我所接受过的competitive programming相关的训练里，这一类的动态规划问题被称为「状态压缩动态规划」。我姑且译作state-embodying。
+                </ul>
+                </div>
+            </div>
+            <div class="blogpostSingl">
+                <div class="blogpostName">
+                <h1>矩阵快速幂</h1>
+                </div>
+                <div class="blogpostContent">
+                Why 矩阵快速幂？因为有些状态转移方程，实际上是从状态到状态的线性算子；而问题的求解，实际上是不断地对初始状态用这个算子做左乘。直接一次一次地左乘，时间复杂度是\(O(n)\)，而用矩阵快速幂直接将要左乘的东西<b>全部先乘起来</b>然后再左乘，时间复杂度是\(O(logn)\)。
+                </div>
+            </div>
+        </div>
+        </div>
+        <!--  blogname -->
+        <div id="blogname" class="blogname">
+            <h1>未为人知<br />之蝶</h1>
+            <div class="hline"> </div>
+            <div id="metalist">
+                Butterflies that No One Knows
+            </div>
+        </div>
+    </body>
+</html>
