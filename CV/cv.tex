@@ -1,0 +1,152 @@
+% LaTeX Curriculum Vitae Template
+%
+% Copyright (C) 2004-2009 Jason Blevins <jrblevin@sdf.lonestar.org>
+% http://jblevins.org/projects/cv-template/
+%
+% You may use use this document as a template to create your own CV
+% and you may redistribute the source code freely. No attribution is
+% required in any resulting documents. I do ask that you please leave
+% this notice and the above URL in the source code if you choose to
+% redistribute this file.
+
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{ctex}
+\usepackage{hyperref}
+\usepackage{geometry}
+
+% Comment the following lines to use the default Computer Modern font
+% instead of the Palatino font provided by the mathpazo package.
+% Remove the 'osf' bit if you don't like the old style figures.
+\usepackage[T1]{fontenc}
+\usepackage[sc,osf]{mathpazo}
+
+% Set your name here
+\def\name{林泽天（Sebastian Lin）}
+
+% Replace this with a link to your CV if you like, or set it empty
+% (as in \def\footerlink{}) to remove the link in the footer:
+\def\footerlink{https://github.com/bctnry/}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdftitle = {\name：简历},
+  pdfsubject = {简历},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 8.5in},
+  left=1.0in,
+  top=1.25in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+\begin{document}
+
+% Place name at left
+{\huge \name}
+
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
+
+\vspace{0.15in}
+
+\begin{minipage}{0.45\linewidth}
+  \begin{tabular}{ll}
+    Mobile: & +86 13022015023 \\
+    Email: & \href{mailto:zetian.lin@outlook.com}{\tt zetian.lin@outlook.com} \\
+    Github: & \href{https://github.com/bctnry/}{\tt https://github.com/\textbf{bctnry}/} \\
+    LinkedIn: & \href{http://www.linkedin.com/in/泽天-林-60a4b6112/}{\tt http://www.linkedin.com/in/\textbf{泽天-林-60a4b6112}/} \\
+  \end{tabular}
+\end{minipage}
+
+
+
+\section*{教育背景}
+
+\begin{itemize}
+  \item{\textbf{广东外语外贸大学}，2015 - 至今\\\textit{在读本科}，计算机科学与技术（预计2019年6月毕业）}
+\end{itemize}
+
+
+
+\section*{项目经历}
+
+\begin{itemize}
+\item{
+    \textbf{文档标记语言Camus}，Racket\\
+    支持嵌入HTML/自动全站生成，可作为Markdown的替代品\\
+    项目地址：\href{https://github.com/CamusMarkup/Camus}{\tt https://github.com/CamusMarkup/Camus}
+  }
+\item{
+    \textbf{RSS/Atom新闻阅读器}，Android(Java)\\
+    项目地址：\href{https://github.com/TsubasaReader/TsubasaReader}{\tt https://github.com/TsubasaReader/TsubasaReader}
+  }
+\item{
+    \textbf{个人博客程序}，PHP \& MySQL\\
+    项目地址：\href{https://github.com/bctnry/Escape/}{\tt https://github.com/bctnry/Escape/}
+  }
+\end{itemize}
+  
+
+\section*{工作技能}
+
+\begin{itemize}
+  \item{\textbf{PHP \& MySQL}：一年开发经验}
+  \item{\textbf{Linux}：熟悉Linux环境，日常使用Linux作为开发平台。}
+  \item{\textbf{Android}：能进行基本的Android应用开发}
+  \item{\textbf{函数式编程语言}：三年使用函数式语言开发的经验，能熟练使用Scheme(Racket)进行开发，对Haskell有一定涉猎。}
+    \item{\textbf{程序语言}：熟悉程序语言理论，能迅速切换到新语言，不受特定语言限制。}
+\end{itemize}
+  
+
+\section*{其他经历}
+
+\begin{itemize}
+  \item{曾作为校ACM集训队队员参加\textbf{2018年“中国高校计算机大赛-团体程序设计天梯赛”}，\\获\textbf{团体国家级二等奖}。}
+\item{曾参加《软件基础（Software Foundations）》第一、二卷的翻译工作。\\
+  地址：\href{https://coq-zh.github.io/SF-zh/}{\tt https://coq-zh.github.io/SF-zh/}}
+\end{itemize}
+
+\bigskip
+
+% Footer
+\begin{center}
+  \begin{footnotesize}
+    Last updated: \today \\
+    \href{\footerlink}{\texttt{\footerlink}}
+  \end{footnotesize}
+\end{center}
+
+\end{document}
