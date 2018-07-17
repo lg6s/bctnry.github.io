@@ -1,0 +1,36 @@
+HEADER.
+title: Laravel note 1
+meta[charset="utf-8"]:  
+ESCAPE.
+<style>
+    code { font-family: monospace; }
+</style>
+END[ESCAPE].
+END[HEADER].
+div[style="width:60%;margin-left:20%"].
+h1: Laravel note 1.
+Guess it'll be suitable for rewriting my crappy unfinished school project for a database course.
+(No, it's not a toy database - that'll be impressive though. You probably wish it is.
+I do, too. But it's not. It's just an PHP application that uses databases for stuff.)
+
+h2: Setting up the environment
+Setting up the environment is pretty straight-forward.
+ul.
+li.
+|b|Composer|\: Follow the steps at |a[href="https://getcomposer.org/download/"]. https://getcomposer.org/download/|, rename the file "|code|composer.phar|" to "|code|composer|" and put it under your |code|$PATH|.
+END[li].
+li.
+|b|Laravel|\: Follow the steps at |a[href="https://laravel.com/docs/5.6/installation"]. https://laravel.com/docs/5.6/installation|.
+END[li].
+END[ul].
+
+I've learned enough MVC stuff to know how to use one without knowing about the implementation details:
+ul.
+li: "Models" represent stuff. No special folder for storing "models" in laravel though, but will live with it somehow.
+li: "Views" are your displaying templates.
+li: "Controllers" are how you're gonna display your stuff / handle stuff from user input.
+li: "Routes" are how you're gonna map URLs to different stuff.
+END[ul].
+
+
+END[div].
