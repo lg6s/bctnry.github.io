@@ -31,3 +31,6 @@ pre {
 .example-code {
     border: 1px solid white;
 }
+.article-list {
+    text-align: center;
+}
